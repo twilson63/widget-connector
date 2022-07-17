@@ -6,7 +6,7 @@ This widget will load the page transactionId and the connect button, the connect
 
 ```html
 <div id="widget-connector"></div>
-<script src="https://arweave.net/{txId}"><script>
+<script src="https://arweave.net/u9mzRk_MjRHPXQzj0IFWeRwesF9SkIHlQDwxviNGyM4"><script>
 ```
 
 ## Build Widget
