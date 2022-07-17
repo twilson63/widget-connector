@@ -2,6 +2,13 @@
 
 This widget will load the page transactionId and the connect button, the connect button will allow arweave users to connect to interact with other widgets on the page.
 
+## Usage
+
+```html
+<div id="widget-connector"></div>
+<script src="https://arweave.net/{txId}"><script>
+```
+
 ## Build Widget
 
 ```sh
