@@ -1,12 +1,15 @@
 <script>
-  import { onMount, createEventDispatcher } from 'svelte'
+  import { onMount } from 'svelte'
   import Modal from './components/modal.svelte'
   import { ArweaveWebWallet } from 'arweave-wallet-connector'
   
+  const pageTransactionIdLoaded = new Event('pageTransactionIdLoaded')
   const walletConnected = new Event('arweaveWalletConnected')
+  const walletDisconnected = new Event('arweaveWalletDisconnected')
 
-  const dispatchConnected = () => {
-    window.dispatchEvent(walletConnected)
+
+  const dispatch = (e) => {
+    window.dispatchEvent(e)
   }
 
   const arweave = window.Arweave.init({
@@ -38,6 +41,7 @@
     if (status === 200) {
       window.transactionId = data.data.transactions.edges[0].node.id 
       transactionId = window.transactionId
+      dispatch(pageTransactionIdLoaded)
     } else {
       window.transactionId = null
       transactionId = 'not found.'
@@ -54,6 +58,7 @@
     if (connectBtnText === 'Disconnect') {
       await window.arweaveWallet.disconnect()
       connectBtnText = 'Connect'
+      dispatch(walletDisconnected)
       return 
     }
     connectDialog = true
@@ -64,7 +69,7 @@
       window.open('https://arconnect.io', '_blank')
     }
     await arweaveWallet.connect(["ACCESS_ADDRESS", "SIGN_TRANSACTION"])
-    dispatchConnected()
+    dispatch(walletConnected)
     connectDialog = false
     connectBtnText = 'Disconnect'
   }
@@ -76,7 +81,7 @@
 
     wallet.setUrl('arweave.app')
     await wallet.connect()
-    dispatchConnected()
+    dispatch(walletConnected)
     connectDialog = false
     connectBtnText = 'Disconnect'
   }

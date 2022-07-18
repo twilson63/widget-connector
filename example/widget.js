@@ -12257,7 +12257,7 @@ function create_fragment(ctx) {
 			const modal_changes = {};
 			if (dirty & /*connectDialog*/ 2) modal_changes.open = /*connectDialog*/ ctx[1];
 
-			if (dirty & /*$$scope, connectDialog*/ 2050) {
+			if (dirty & /*$$scope, connectDialog*/ 8194) {
 				modal_changes.$$scope = { dirty, ctx };
 			}
 
@@ -12283,10 +12283,12 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
+	const pageTransactionIdLoaded = new Event('pageTransactionIdLoaded');
 	const walletConnected = new Event('arweaveWalletConnected');
+	const walletDisconnected = new Event('arweaveWalletDisconnected');
 
-	const dispatchConnected = () => {
-		window.dispatchEvent(walletConnected);
+	const dispatch = e => {
+		window.dispatchEvent(e);
 	};
 
 	const arweave = window.Arweave.init({
@@ -12321,6 +12323,7 @@ function instance($$self, $$props, $$invalidate) {
 		if (status === 200) {
 			window.transactionId = data.data.transactions.edges[0].node.id;
 			$$invalidate(0, transactionId = window.transactionId);
+			dispatch(pageTransactionIdLoaded);
 		} else {
 			window.transactionId = null;
 			$$invalidate(0, transactionId = 'not found.');
@@ -12336,6 +12339,7 @@ function instance($$self, $$props, $$invalidate) {
 		if (connectBtnText === 'Disconnect') {
 			await window.arweaveWallet.disconnect();
 			$$invalidate(2, connectBtnText = 'Connect');
+			dispatch(walletDisconnected);
 			return;
 		}
 
@@ -12348,7 +12352,7 @@ function instance($$self, $$props, $$invalidate) {
 		}
 
 		await arweaveWallet.connect(["ACCESS_ADDRESS", "SIGN_TRANSACTION"]);
-		dispatchConnected();
+		dispatch(walletConnected);
 		$$invalidate(1, connectDialog = false);
 		$$invalidate(2, connectBtnText = 'Disconnect');
 	}
@@ -12357,7 +12361,7 @@ function instance($$self, $$props, $$invalidate) {
 		const wallet = new ArweaveWebWallet({ name: 'PermaPage: ' + document.title });
 		wallet.setUrl('arweave.app');
 		await wallet.connect();
-		dispatchConnected();
+		dispatch(walletConnected);
 		$$invalidate(1, connectDialog = false);
 		$$invalidate(2, connectBtnText = 'Disconnect');
 	}

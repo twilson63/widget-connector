@@ -19,6 +19,7 @@ try {
     {name: 'Content-Type', value: 'application/javascript'},
     {name: 'App-Name', value: 'Permapage-Widget'},
     {name: 'App-Version', value: '0.0.1'},
+    {name: 'Widget-Id', value: pkg.name},
     {name: 'Widget-Name', value: pkg.name},
     {name: 'Widget-Version', value: pkg.version},
     {name: 'Widget-Desc', value: pkg.description},

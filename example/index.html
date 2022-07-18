@@ -15,8 +15,14 @@
   <body>
     <div id="widget-connector"></div>
     <script>
+      window.addEventListener('pageTransactionIdLoaded', () => {
+        console.log('txId', window.transactionId)
+      })
       window.addEventListener('arweaveWalletConnected', () => {
         console.log('wallet connected')
+      })
+      window.addEventListener('arweaveWalletDisconnected', () => {
+        console.log('wallet disconnected')
       })
     </script>
   </body>

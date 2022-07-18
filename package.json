@@ -1,6 +1,6 @@
 {
   "name": "widget-connector",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A system widget that sets the transactionId and provides connect functionality for all other widgets",
   "main": "index.js",
   "scripts": {
