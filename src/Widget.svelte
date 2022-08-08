@@ -87,7 +87,7 @@
   }
 </script>
 
-<div class="navbar bg-base-100">
+<div class="hidden navbar bg-base-100">
   <div class="flex-1">
     <div class="normal-case text-xl">Permapage: {transactionId}</div>
   </div>
