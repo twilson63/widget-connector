@@ -6,7 +6,7 @@ This widget will load the page transactionId and the connect button, the connect
 
 ```html
 <div id="widget-connector"></div>
-<script src="https://arweave.net/AKCu7H3CEZWJYYIe6Fr9ZBitP4plgObGY1yhrMKj0x0"><script>
+<script src="https://arweave.net/tnnm13K86GcOhtkilZAk3DZeJeHSCZNj7cDTpnZ1lw8"><script>
 ```
 
 ## Your widget can request a connected wallet by dispatching a `walletConnect` event
