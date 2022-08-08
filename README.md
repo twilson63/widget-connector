@@ -6,8 +6,20 @@ This widget will load the page transactionId and the connect button, the connect
 
 ```html
 <div id="widget-connector"></div>
-<script src="https://arweave.net/u9mzRk_MjRHPXQzj0IFWeRwesF9SkIHlQDwxviNGyM4"><script>
+<script src="https://arweave.net/AKCu7H3CEZWJYYIe6Fr9ZBitP4plgObGY1yhrMKj0x0"><script>
 ```
+
+## Your widget can request a connected wallet by dispatching a `walletConnect` event
+
+This method will prompt the user to connect with a wallet, then once a user is connected it will invoke the `arweaveWalletConnected` event.
+
+Example
+
+```js
+const e = new Event("walletConnect");
+window.dispatchEvent(e);
+```
+
 
 ## How to use in your widget
 

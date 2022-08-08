@@ -16,14 +16,14 @@ try {
   const data = fs.readFileSync('./dist/widget.js')
 
   const tags = [
-    {name: 'Content-Type', value: 'application/javascript'},
-    {name: 'App-Name', value: 'Permapage-Widget'},
-    {name: 'App-Version', value: '0.0.1'},
-    {name: 'Widget-Id', value: pkg.name},
-    {name: 'Widget-Name', value: pkg.name},
-    {name: 'Widget-Version', value: pkg.version},
-    {name: 'Widget-Desc', value: pkg.description},
-    {name: 'Widget-Docs', value: 'https://github.com/twilson63/widget-connector/README.md'}
+    { name: 'Content-Type', value: 'application/javascript' },
+    { name: 'App-Name', value: 'Permapage-Widget' },
+    { name: 'App-Version', value: '0.0.1' },
+    { name: 'Widget-Id', value: pkg.name },
+    { name: 'Widget-Name', value: pkg.name },
+    { name: 'Widget-Version', value: pkg.version },
+    { name: 'Widget-Desc', value: pkg.description },
+    { name: 'Widget-Docs', value: 'https://github.com/twilson63/widget-connector/README.md' }
   ]
 
   const tx = await bundlr.createTransaction(data, { tags })
